@@ -5,6 +5,8 @@ package com.lamperem.util;
  * @author glopez
  *
  */
+
+
 public class CircularList {
 
 	private Node baseNode;
@@ -70,6 +72,17 @@ public class CircularList {
 				while( aux.getValue() != value ) { // search reference node
 					aux = aux.getNextNode();
 				}
+				
+				if(aux == lastNode) {
+					aux.setFollow(newNode);
+					newNode.setFollow(baseNode);
+					lastNode = baseNode;
+				}else {
+					Node follow = aux.getNextNode();
+					aux.setFollow(newNode);
+					newNode.setFollow(follow);
+				}
+				size++;
 			}
 		}
 		
